@@ -5,34 +5,37 @@ import AppKit
 @Suite("Theme Tests")
 struct ThemeTests {
     @Test func headingFontsDecreaseInSize() {
-        let theme = Theme.shared
-        let h1 = theme.headingFont(level: 1).pointSize
-        let h2 = theme.headingFont(level: 2).pointSize
-        let h3 = theme.headingFont(level: 3).pointSize
-        #expect(h1 > h2)
-        #expect(h2 > h3)
+        let t = Theme.shared
+        #expect(t.headingFont(level: 1).pointSize > t.headingFont(level: 2).pointSize)
+        #expect(t.headingFont(level: 2).pointSize > t.headingFont(level: 3).pointSize)
     }
 
     @Test func codeFontIsMonospaced() {
-        let theme = Theme.shared
-        let descriptor = theme.codeFont.fontDescriptor
-        #expect(descriptor.symbolicTraits.contains(.monoSpace))
+        #expect(Theme.shared.codeFont.fontDescriptor.symbolicTraits.contains(.monoSpace))
+    }
+
+    @Test func editorFontIsMonospaced() {
+        #expect(Theme.shared.codeFontForEditor.fontDescriptor.symbolicTraits.contains(.monoSpace))
     }
 
     @Test func defaultAttributesIncludeBodyFont() {
-        let attrs = Theme.shared.defaultAttributes
-        let font = attrs[.font] as? NSFont
+        let font = Theme.shared.defaultAttributes[.font] as? NSFont
         #expect(font != nil)
         #expect(font?.pointSize == 16)
     }
 
     @Test func headingLevelIsClampedTo1Through6() {
-        let theme = Theme.shared
-        let h0 = theme.headingFont(level: 0)
-        let h1 = theme.headingFont(level: 1)
-        let h7 = theme.headingFont(level: 7)
-        let h6 = theme.headingFont(level: 6)
-        #expect(h0.pointSize == h1.pointSize)
-        #expect(h7.pointSize == h6.pointSize)
+        let t = Theme.shared
+        #expect(t.headingFont(level: 0).pointSize == t.headingFont(level: 1).pointSize)
+        #expect(t.headingFont(level: 7).pointSize == t.headingFont(level: 6).pointSize)
+    }
+
+    @Test func tokenPaletteCoversAllKinds() {
+        // A representative sample; color(for:) is an exhaustive switch so this
+        // mostly guards against a nil/crash regression.
+        let kinds: [TokenKind] = [.heading, .strong, .inlineCode, .linkText, .listMarker, .blockquote]
+        for k in kinds {
+            #expect(Theme.shared.color(for: k) != nil)
+        }
     }
 }

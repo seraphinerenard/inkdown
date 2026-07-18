@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src mdassets: 'unsafe-inline';
+    style-src mdassets: 'unsafe-inline';
+    font-src mdassets:;
+    img-src mdassets: data: https: http:;
+    connect-src 'none';
+    base-uri 'none';">
+  <link rel="stylesheet" href="katex.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>Preview</title>
+</head>
+<body>
+  <article id="content" class="markdown-body"></article>
+  <script src="katex.min.js"></script>
+  <script src="mermaid.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

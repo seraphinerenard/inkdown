@@ -4,16 +4,15 @@ import PackageDescription
 let package = Package(
     name: "MarkdownEditor",
     platforms: [.macOS(.v14)],
-    dependencies: [
-        .package(url: "https://github.com/apple/swift-markdown.git", from: "0.4.0"),
-    ],
     targets: [
         .executableTarget(
             name: "MarkdownEditor",
-            dependencies: [
-                .product(name: "Markdown", package: "swift-markdown"),
-            ],
             path: "Sources",
+            resources: [
+                .copy("Resources/preview"),
+                .copy("Resources/AppIcon.icns"),
+                .copy("Resources/AppIcon.png"),
+            ],
             swiftSettings: [.swiftLanguageMode(.v5)]
         ),
         .testTarget(

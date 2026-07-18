@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "esbuild": "^0.28.1",
+    "highlight.js": "^11.11.1",
+    "katex": "^0.17.0",
+    "markdown-it": "^14.3.0",
+    "markdown-it-abbr": "^2.0.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-attrs": "^5.0.0",
+    "markdown-it-container": "^4.0.0",
+    "markdown-it-deflist": "^3.0.1",
+    "markdown-it-emoji": "^3.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-front-matter": "^0.2.4",
+    "markdown-it-github-alerts": "^1.0.1",
+    "markdown-it-mark": "^4.0.0",
+    "markdown-it-sub": "^2.0.0",
+    "markdown-it-sup": "^2.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "markdown-it-texmath": "^1.0.0",
+    "mermaid": "^11.16.0"
+  }
+}

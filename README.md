@@ -80,7 +80,7 @@ Sources/
     └── FileNode.swift               Recursive file tree model
 ```
 
-The editor uses NSTextView because it's the only AppKit component with glyph-level control, which is needed for hiding syntax characters. Markdown parsing is handled by Apple's [swift-markdown](https://github.com/apple/swift-markdown) library. There are no other external dependencies.
+The editor uses NSTextView because it's the only AppKit component with glyph-level control, which is needed for hiding syntax characters. Markdown parsing is handled by a built-in line tokenizer and grammar. There are no external dependencies.
 
 A precomputed UTF-8 to UTF-16 offset lookup table converts AST source locations to NSRange in O(1) instead of scanning the string each time. The editor tracks which paragraph your cursor is in and only shows syntax characters for that paragraph.
 

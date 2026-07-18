@@ -1,33 +1,27 @@
 import Testing
-import Foundation
+import AppKit
 @testable import MarkdownEditor
 
 @Suite("FileNode Tests")
 struct FileNodeTests {
     @Test func createsNodeFromFileURL() {
-        let url = URL(fileURLWithPath: "/tmp/test.md")
-        let node = FileNode(url: url)
+        let node = FileNode(url: URL(fileURLWithPath: "/tmp/test.md"))
         #expect(node.name == "test.md")
         #expect(!node.isDirectory)
         #expect(node.isMarkdown)
     }
 
     @Test func createsNodeFromDirectoryURL() {
-        let url = URL(fileURLWithPath: "/tmp/docs", isDirectory: true)
-        let node = FileNode(url: url, isDirectory: true)
+        let node = FileNode(url: URL(fileURLWithPath: "/tmp/docs", isDirectory: true), isDirectory: true)
         #expect(node.isDirectory)
         #expect(!node.isMarkdown)
     }
 
     @Test func detectsMarkdownExtension() {
-        let url = URL(fileURLWithPath: "/tmp/notes.markdown")
-        let node = FileNode(url: url)
-        #expect(node.isMarkdown)
+        #expect(FileNode(url: URL(fileURLWithPath: "/tmp/notes.markdown")).isMarkdown)
     }
 
     @Test func nonMarkdownFileIsNotMarkdown() {
-        let url = URL(fileURLWithPath: "/tmp/code.swift")
-        let node = FileNode(url: url)
-        #expect(!node.isMarkdown)
+        #expect(!FileNode(url: URL(fileURLWithPath: "/tmp/code.swift")).isMarkdown)
     }
 }

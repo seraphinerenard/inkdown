@@ -1,7 +1,31 @@
 .build/
 .DS_Store
-*.xcodeproj
-xcuserdata/
-DerivedData/
-.swiftpm/
-Inkdown.app/
+
+# Preview build dependencies. The *generated* assets in Sources/Resources/preview
+# ARE committed (so `swift run` works offline); only node_modules is ignored.
+preview-src/node_modules/
+
+# Local secrets and machine-specific files
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+*credentials*.json
+*secret*.json
+*token*.json
+*password*.json
+
+# Agent-generated notes
+CLAUDE.md
+AGENTS.md
+PLAN.md
+TODO.md
+TODOS.md
+docs/plans/
+.claude/
+.codex/

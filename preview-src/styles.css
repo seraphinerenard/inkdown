@@ -1,0 +1,169 @@
+/* GitHub-flavored preview styling, light/dark aware. Dark mode is toggled by
+   adding class "dark" to <html> (driven from Swift on appearance change). */
+
+:root {
+  --fg: #1f2328;
+  --fg-muted: #59636e;
+  --bg: #ffffff;
+  --border: #d1d9e0;
+  --code-bg: #f6f8fa;
+  --code-fg: #1f2328;
+  --link: #0969da;
+  --quote-fg: #59636e;
+  --quote-border: #d1d9e0;
+  --table-alt: #f6f8fa;
+  --mark-bg: #fff8c5;
+  /* highlight.js */
+  --hl-comment: #59636e;
+  --hl-keyword: #cf222e;
+  --hl-string: #0a3069;
+  --hl-number: #0550ae;
+  --hl-title: #6639ba;
+  --hl-type: #953800;
+  --hl-attr: #0550ae;
+  --hl-built-in: #0550ae;
+}
+
+:root.dark {
+  --fg: #e6edf3;
+  --fg-muted: #9198a1;
+  --bg: #0d1117;
+  --border: #3d444d;
+  --code-bg: #161b22;
+  --code-fg: #e6edf3;
+  --link: #4493f8;
+  --quote-fg: #9198a1;
+  --quote-border: #3d444d;
+  --table-alt: #161b22;
+  --mark-bg: #bb8009;
+  --hl-comment: #9198a1;
+  --hl-keyword: #ff7b72;
+  --hl-string: #a5d6ff;
+  --hl-number: #79c0ff;
+  --hl-title: #d2a8ff;
+  --hl-type: #ffa657;
+  --hl-attr: #79c0ff;
+  --hl-built-in: #79c0ff;
+}
+
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.markdown-body {
+  box-sizing: border-box;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 40px 60vh;
+  word-wrap: break-word;
+}
+
+.markdown-body > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { margin: 24px 0 16px; font-weight: 600; line-height: 1.25; }
+h1 { font-size: 2em; padding-bottom: .3em; border-bottom: 1px solid var(--border); }
+h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1em; }
+h5 { font-size: .875em; }
+h6 { font-size: .85em; color: var(--fg-muted); }
+
+p, blockquote, ul, ol, dl, table, pre, details { margin: 0 0 16px; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol { padding-left: 2em; }
+li + li { margin-top: .25em; }
+li.task-list-item { list-style: none; }
+li.task-list-item input { margin: 0 .4em .25em -1.4em; vertical-align: middle; }
+
+blockquote {
+  padding: 0 1em;
+  color: var(--quote-fg);
+  border-left: .25em solid var(--quote-border);
+}
+
+hr { height: 1px; border: 0; background: var(--border); margin: 24px 0; }
+
+code, kbd, samp {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 85%;
+}
+:not(pre) > code {
+  padding: .2em .4em;
+  background: var(--code-bg);
+  border-radius: 6px;
+}
+pre {
+  padding: 16px;
+  overflow: auto;
+  background: var(--code-bg);
+  border-radius: 6px;
+  line-height: 1.45;
+}
+pre code { padding: 0; background: transparent; font-size: 100%; }
+
+table { border-collapse: collapse; display: block; overflow: auto; width: max-content; max-width: 100%; }
+th, td { padding: 6px 13px; border: 1px solid var(--border); }
+tr:nth-child(2n) { background: var(--table-alt); }
+
+img { max-width: 100%; box-sizing: border-box; }
+mark { background: var(--mark-bg); color: inherit; padding: 0 .1em; }
+sub, sup { font-size: 75%; }
+
+kbd {
+  padding: 3px 5px; background: var(--code-bg);
+  border: 1px solid var(--border); border-radius: 6px;
+}
+
+/* Definition lists */
+dt { font-weight: 600; margin-top: 12px; }
+dd { margin-left: 1.5em; }
+
+/* Footnotes */
+.footnotes { font-size: .875em; color: var(--fg-muted); border-top: 1px solid var(--border); margin-top: 32px; }
+
+/* Mermaid */
+.mermaid { text-align: center; margin: 0 0 16px; }
+
+/* KaTeX display math shouldn't overflow the pane */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+
+/* ---- Admonitions (::: name) and GitHub alerts (> [!NOTE]) ---- */
+.admonition, .markdown-alert {
+  padding: 8px 16px; margin: 0 0 16px;
+  border-left: .25em solid var(--admonition-color, var(--border));
+  border-radius: 0 6px 6px 0;
+  background: color-mix(in srgb, var(--admonition-color, var(--fg-muted)) 8%, transparent);
+}
+.admonition-title, .markdown-alert-title {
+  font-weight: 600; text-transform: capitalize; margin: 0 0 4px;
+  color: var(--admonition-color, var(--fg));
+  display: flex; align-items: center; gap: 6px;
+}
+.admonition > :last-child, .markdown-alert > :last-child { margin-bottom: 0; }
+
+.admonition-note,   .markdown-alert-note      { --admonition-color: #0969da; }
+.admonition-tip,    .markdown-alert-tip       { --admonition-color: #1a7f37; }
+.admonition-success                           { --admonition-color: #1a7f37; }
+.admonition-info                              { --admonition-color: #0969da; }
+.admonition-important, .markdown-alert-important { --admonition-color: #8250df; }
+.admonition-warning, .markdown-alert-warning  { --admonition-color: #9a6700; }
+.admonition-caution, .markdown-alert-caution  { --admonition-color: #cf222e; }
+.admonition-danger                            { --admonition-color: #cf222e; }
+
+/* ---- highlight.js token colors (self-contained, themed) ---- */
+.hljs-comment, .hljs-quote { color: var(--hl-comment); font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-doctag, .hljs-name { color: var(--hl-keyword); }
+.hljs-string, .hljs-regexp, .hljs-addition { color: var(--hl-string); }
+.hljs-number, .hljs-symbol, .hljs-bullet, .hljs-link { color: var(--hl-number); }
+.hljs-title, .hljs-section, .hljs-title.function_ { color: var(--hl-title); }
+.hljs-type, .hljs-class .hljs-title, .hljs-tag { color: var(--hl-type); }
+.hljs-attr, .hljs-attribute, .hljs-variable, .hljs-template-variable { color: var(--hl-attr); }
+.hljs-built_in, .hljs-builtin-name, .hljs-selector-id, .hljs-selector-class { color: var(--hl-built-in); }
+.hljs-meta { color: var(--hl-comment); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 600; }
+.hljs-deletion { color: var(--hl-keyword); }
